@@ -35,6 +35,7 @@ curLevelEnemies = pygame.sprite.Group()
 curLevelplayers = pygame.sprite.Group()
 
 allSprites = pygame.sprite.Group()
+buttonsTurns = pygame.sprite.Group()
 
 
 

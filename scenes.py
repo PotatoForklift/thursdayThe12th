@@ -11,7 +11,7 @@ title = unimportAntSprites('sprites/buttons/title.png', [125, 50])
 backgroundAnimation = ["sprites/bkg/background1.png", "sprites/bkg/background2.png", "sprites/bkg/background3.png",
                        "sprites/bkg/background4.png", "sprites/bkg/background5.png", "sprites/bkg/background6.png",
                        "sprites/bkg/background7.png", "sprites/bkg/background8.png"]
-bkg1anim = ["sprites/bkg/bkg1.png"]
+bkg1anim = ["Background7.png", "Background8.png"]
 
 
 
@@ -34,7 +34,6 @@ class background(pygame.sprite.Sprite):
         self.time += 1
         if self.time == 20:
             self.time = 0
-            
             self.Count += 1
         
         self.surf = pygame.image.load(self.playerAnimation[self.Count]).convert_alpha()

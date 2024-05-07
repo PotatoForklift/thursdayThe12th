@@ -2,6 +2,8 @@
 # 4/12/24 - 5/10/24
 # a game for the rumsey van
 #
+import random
+
 import pygame.image
 
 from scenes import *
@@ -29,6 +31,29 @@ class FIRE(pygame.sprite.Sprite):
             self.time = 0
             
             self.Count += 1
+            
+            
+            yes
+            
+            medical monitering, put in water filtrations, money
+            
+            69000
+            
+            400$
+            
+            TIA
+            
+            7 years
+            
+            no
+            
+            2015
+            
+            671000000 six hundred seventy on mimllion
+            
+            they have higher standards for all of the chemicals 
+            
+            
         
         self.surf = pygame.image.load(self.playerAnimation[self.Count]).convert_alpha()
 
@@ -80,11 +105,11 @@ def startGame():
     print(selp2)
     print(selp3)
     print(selp4)
-    x = 60
-    y = -60
+    x = 167
+    y = 60
     for spot in list:
-        x -= 10
-        y += 150
+        x -= 40
+        y += 120
         
         if spot == 'kid':
             global kid
@@ -166,7 +191,9 @@ def infoWin(per):
     allSprites.add(infoSprites)
 
 def turn(char):
+
     hiker.buttons()
+    allSprites.add(buttonsTurns)
 
 ##############################################################################
 ##############################################################################
@@ -295,6 +322,19 @@ while running:
         fire.update()
     if b:
         back.update()
+    try:
+        print('hi')
+        for pl in curLevelplayers:
+            if pl.health >= 200:
+                pl.health = 200
+            if pl.health <= 0:
+                pl.health = 0
+        #for en in curLevelEnemies:
+
+
+    except:
+        print()
+        pass
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -340,9 +380,38 @@ while running:
                     if char.rect.collidepoint(x, y) and SCREEN == 2:
                         char.mouse = True
                         char.selek = False
-                        
-                if Hiker([0, 0]).throwButtonRect.collidepoint((x, y)):
-                    hiker.throw()
+                try:
+                    if Hiker([0, 0]).throwButton.rect.collidepoint((x, y)):
+                        hiker.throw()
+                        for en in curLevelEnemies:
+                            en.health -=60
+                        choicePlayer = []
+                        for pl in curLevelplayers:
+                            choicePlayer.append(pl)
+                        charMinusHp = random.choice(choicePlayer)
+                        charMinusHp.health -= 89
+                    if Hiker([0, 0]).fstAidButton.rect.collidepoint((x, y)):
+                        for pl in curLevelplayers:
+
+                            pl.health += 30
+                            if pl.health >= 200:
+                                pl.health = 200
+                            if pl.health<= 0:
+                                curLevelplayers.remove(pl)
+                                allSprites.remove(pl)
+
+                    if Hiker([0, 0]).stickButton.rect.collidepoint((x, y)):
+                        for en in curLevelEnemies:
+                            en.health -= 80
+                        choicePlayer = []
+                        for pl in curLevelplayers:
+                            choicePlayer.append(pl)
+                        charMinusHp = random.choice(choicePlayer)
+
+
+
+                except:
+                    pass
                     
             
             if event.button == 3:
@@ -397,6 +466,8 @@ while running:
         for char in curLevelplayers:
             char.draw_health(screen)
             turn(hiker)
+        for en in curLevelEnemies:
+            en.draw_health(screen)
     
     
     pygame.display.update()
